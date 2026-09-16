@@ -85,6 +85,7 @@ app.put('/treinos/:id', (req, res) => {
 const id = Number(req.params.id);
 const treino = treinos.find((t) => t.id === id);
 if (treino === undefined) {
+// [PROF] Essas aspas sao curvas (’), copiadas do PDF. JavaScript so aceita aspa normal (' ou "). Com isso o servidor nem sobe.
 return res.status (404).json({ erro: ’Treino nao encontrado .’ });
 }
 const erro = validarTreino(req.body);
@@ -99,10 +100,12 @@ res.status(200).json(treino);
 // ------------------------------------------------------------
 // DELETE /treinos/:id - remove um treino
 // ------------------------------------------------------------
+// [PROF] Aspas curvas de novo e espaco dentro da rota. Troca pelas aspas normais e deixa so /treinos/:id.
 app.delete(’/ treinos /: id ’, (req , res) => {
 const id = Number(req.params.id);
 const posicao = treinos.findIndex((t) => t.id === id);
 if (posicao === -1) {
+// [PROF] Aspas curvas aqui tambem.
 return res.status (404).json({ erro: ’Treino nao encontrado .’ });
 }
 treinos.splice(posicao , 1);
