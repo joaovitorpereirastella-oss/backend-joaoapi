@@ -133,13 +133,15 @@ const atualizado = db.prepare('SELECT * FROM treinos WHERE id = ?').get(id);
 // DELETE /treinos/:id - remove um treino
 // ------------------------------------------------------------
 app.delete('/treinos/:id', (req, res) => {
-const id = Number(req.params.id);
-const treino = db.prepare('SELECT * FROM treinos WHERE id = ?').get(id);
-if (treino === undefined) {
-return res.status(404).json({ erro: 'Treino nao encontrado.' });
+    const id = Number(req.params.id);
+    const treino = db.prepare('SELECT * FROM treinos WHERE id = ?').get(id);
+    
+  if (treino === undefined) {
+    return res.status(404).json({ erro: 'Treino nao encontrado.' });
 }
-db.prepare('DELETE FROM treinos WHERE id = ?').run(id);
-res.status(204).end();
+
+  db.prepare('DELETE FROM treinos WHERE id = ?').run(id);
+  res.status(204).end();
 });
 // ------------------------------------------------------------
 const PORTA = 3000;
