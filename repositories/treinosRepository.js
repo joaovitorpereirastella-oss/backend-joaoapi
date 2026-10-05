@@ -1,8 +1,5 @@
 const db = require('../banco.js');
 function listarTodos() {
-
-2
-
 return db.prepare('SELECT * FROM treinos').all();
 }
 function buscarPorId(id) {
