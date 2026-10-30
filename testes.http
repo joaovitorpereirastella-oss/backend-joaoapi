@@ -90,3 +90,53 @@ DELETE {{url}}/treinos/99999
 
 ### 12 - Listar de novo pra conferir       -> espera 200
 GET {{url}}/treinos
+
+
+
+### LOGIN COM DIEGO
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "usuario": "diego",
+  "senha": "1234"
+}
+
+### VER PERFIL
+GET http://localhost:3000/perfil
+
+### LOGOUT
+POST http://localhost:3000/logout
+
+### PERFIL DEPOIS DO LOGOUT
+GET http://localhost:3000/perfil
+
+### LOGIN COM SENHA ERRADA
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "usuario": "diego",
+  "senha": "9999"
+}
+
+### LOGIN COM USUARIO INEXISTENTE
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "usuario": "inexistente",
+  "senha": "1234"
+}
+
+### LOGIN COM ALUNO
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "usuario": "aluno",
+  "senha": "senha"
+}
+
+### PERFIL DO ALUNO
+GET http://localhost:3000/perfil

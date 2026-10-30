@@ -1,4 +1,5 @@
 const service = require('../services/treinosService.js');
+const authController = require('./authController.js');
 
 function listar(req, res) {
     res.status(200).json(service.listarTodos());
