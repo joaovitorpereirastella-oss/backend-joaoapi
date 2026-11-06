@@ -1,4 +1,4 @@
-const service = require('../services/treinosService.js');
+gitconst service = require('../services/treinosService.js');
 function listar(req, res) {
     let minimo;
 
