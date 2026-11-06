@@ -2,7 +2,10 @@ const service = require('../services/treinosService.js');
 const authController = require('./authController.js');
 
 function listar(req, res) {
-    res.status(200).json(service.listarTodos());
+    const minimo = req.query.minimo;
+    const treinos = service.listarTodos(minimo);
+
+    res.status(200).json(treinos);
 }
 
 function buscarUm(req, res) {
@@ -43,4 +46,10 @@ function remover(req, res) {
     res.status(204).end();
 }
 
-module.exports = { listar, buscarUm, criar, atualizar, remover };
+function resumo(req, res) {
+    const resultado = service.resumoTreinos();
+
+    res.status(200).json(resultado);
+}
+
+module.exports = { listar, buscarUm, criar, atualizar, remover, resumo };
