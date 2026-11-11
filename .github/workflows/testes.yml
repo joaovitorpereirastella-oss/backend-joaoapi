@@ -12,10 +12,9 @@ on: push
 
 jobs:
   testar:
-    # No proprio template o codigo esta vazio de proposito,
-    # entao nao faz sentido rodar os testes aqui.
     if: github.repository != 'Srdiegoibs/backend-i-template'
     runs-on: ubuntu-latest
+
     steps:
       - name: Pega o codigo do aluno
         uses: actions/checkout@v4
@@ -34,7 +33,22 @@ jobs:
           repository: Srdiegoibs/backend-i-referencia
           path: .testes-oficiais
 
-      - name: Roda os testes ate a aula declarada no arquivo AULA
+      - name: Inicia o servidor
+        run: |
+          npm start > servidor.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/treinos > /dev/null; then
+              echo "Servidor iniciado com sucesso!"
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://localhost:3000/treinos > /dev/null || {
+            cat servidor.log
+            exit 1
+          }
+
+      - name: Roda os testes oficiais
         run: |
           AULA=$(tr -d '[:space:]' < AULA)
           echo "Testando ate a aula $AULA"
