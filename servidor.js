@@ -1,6 +1,7 @@
 
 const express = require('express');
 const treinosController = require('./controllers/treinosController.js');
+const authController = require('./controllers/authController.js');
 
 const app = express();
 
@@ -15,6 +16,10 @@ app.get('/treinos/:id', treinosController.buscarUm);
 app.post('/treinos', treinosController.criar);
 app.put('/treinos/:id', treinosController.atualizar);
 app.delete('/treinos/:id', treinosController.remover);
+// Autenticacao (Aula 05)
+app.post('/login', authController.login);
+app.get('/perfil', authController.perfil);
+app.post('/logout', authController.logout);
 
 const PORTA = 3000;
 
